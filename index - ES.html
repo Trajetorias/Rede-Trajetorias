@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ do Bolsista ES · Rede Trajetórias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#144DA8; --blued:#0F3C84; --blue2:#124B9F;
+  --ink:#1B1B1B; --grey:#6B7280; --cloud:#CFE0F6;
+  --panel:#EEF1F6; --panel2:#E4ECF7; --gold:#C9A24B;
+  --line:#D5DCEA; --paper:#eef2f8; --card:#ffffff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Poppins',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,var(--blued),var(--blue));color:#fff;padding:54px 0 46px}
+.hero .wordmark{font-weight:700;letter-spacing:.34em;font-size:15px;opacity:.9}
+.hero .eyebrow{margin-top:14px;font-weight:600;letter-spacing:.06em;font-size:13px;color:var(--cloud);text-transform:uppercase}
+.hero h1{margin:10px 0 8px;font-size:34px;font-weight:700}
+.hero .lead{color:var(--cloud);font-size:16px;max-width:640px}
+.intro{padding:30px 0 6px}
+.intro .q{font-size:20px;font-weight:600}
+.intro .s{color:var(--grey);font-size:15px;margin-top:4px}
+.search{margin:22px 0 8px}
+.search input{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:12px;font-family:inherit;font-size:15px;background:var(--card);outline:none}
+.search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(20,77,168,.12)}
+.cats{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+.cat{padding:8px 14px;border:1px solid var(--line);background:var(--card);border-radius:999px;font-size:13px;font-weight:500;color:var(--blue);cursor:pointer;user-select:none}
+.cat.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.panel{padding:14px 0 40px}
+.qcat{margin:26px 0 8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.acc{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+.acc summary{list-style:none;cursor:pointer;padding:16px 18px;font-weight:500;font-size:15px;display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .plus{color:var(--blue);font-weight:700;flex:0 0 auto;transition:transform .2s}
+.acc[open] summary .plus{transform:rotate(45deg)}
+.acc .body{padding:0 18px 18px;color:#333;font-size:14.5px}
+.acc .body b{color:var(--blued)}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 8px;border-radius:6px;background:var(--panel2);color:var(--blue);margin-right:6px}
+a{color:var(--blue)}
+.foot{background:var(--blue);color:#fff;padding:26px 0;margin-top:10px}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center}
+.foot b{font-weight:600}
+.note{padding:18px 0 40px;color:var(--grey);font-size:13px}
+.empty{padding:30px 0;color:var(--grey)}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap">
+  <div class="wordmark">TRAJETÓRIAS</div>
+  <div class="eyebrow">Programa Talentos Globais ES · FAPES · 2026</div>
+  <h1>Suas dúvidas sobre o programa</h1>
+  <div class="lead">Um lugar único para as respostas que mais importam entre a aprovação e o embarque. As respostas saem direto dos editais FAPES/SECTI nº 15/2026 e FAPES/SEGER nº 14/2026.</div>
+</div></div>
+
+<div class="wrap">
+  <div class="intro">
+    <div class="q">Você foi aprovado(a). E agora?</div>
+    <div class="s">Onde a regra muda conforme o seu perfil, marcamos <span class="tag">Público geral</span> ou <span class="tag">Servidores</span>.</div>
+  </div>
+  <div class="search"><input id="q" type="search" placeholder="Buscar por palavra: bolsa, visto, retorno, licença..." autocomplete="off"></div>
+  <div class="cats" id="cats"></div>
+  <div class="panel" id="panel"></div>
+</div>
+
+<div class="foot"><div class="wrap">
+  <b>A Rede Trajetórias caminha com você na ida, no exterior e na volta.</b>
+  <span>Dúvidas: bolsas.duvidas@fapes.es.gov.br</span>
+</div></div>
+<div class="wrap"><div class="note">Material de apoio da Rede Trajetórias · Programa Talentos Globais Espírito Santo · Editais FAPES/SECTI nº 15/2026 e FAPES/SEGER nº 14/2026. Em caso de conflito, o texto do edital e do Termo de Concessão de Bolsa prevalece.</div></div>
+
+<script>
+const CATS=[
+  {id:'programa',label:'Sobre o programa'},
+  {id:'bolsa',label:'Bolsa e pagamentos'},
+  {id:'termo',label:'Termo e licença'},
+  {id:'curso',label:'Durante o curso'},
+  {id:'retorno',label:'Retorno'},
+  {id:'visto',label:'Visto e embarque'},
+  {id:'prazos',label:'Prazos e pendências'},
+  {id:'contato',label:'Contatos'}
+];
+const FAQ={
+  programa:[
+    {q:'O que é o Programa Talentos Globais Espírito Santo?',a:'É um programa do Estado do Espírito Santo, pela FAPES e pela Secretaria parceira, em parceria com o Instituto Trajetórias, que apoia mestrados internacionais presenciais em universidades entre as 100 melhores do QS ou do Times Higher Education de 2026.'},
+    {q:'Quem são os órgãos e qual o papel de cada um?',a:'A <b>FAPES</b> concede e paga a bolsa e o auxílio-instalação. A Secretaria parceira responde pela política: <span class="tag">Público geral</span> <b>SECTI</b>; <span class="tag">Servidores</span> <b>SEGER</b>. O <b>Instituto Trajetórias</b> é entidade parceira de acompanhamento, sem competência para deliberar sobre concessão, cancelamento ou homologação.'},
+    {q:'Qual a diferença entre os dois editais?',a:'<span class="tag">Público geral</span> é o edital <b>FAPES/SECTI nº 15/2026</b>, para residentes no ES. <span class="tag">Servidores</span> é o edital <b>FAPES/SEGER nº 14/2026</b>, para servidores públicos estaduais efetivos, estáveis e ativos, com regras adicionais de licença.'}
+  ],
+  bolsa:[
+    {q:'Quais são os valores da bolsa?',a:'A bolsa <b>BMI-TG</b> é de <b>US$ 5.000 por trimestre</b>, com vigência de 12 a 24 meses. O <b>Auxílio-Instalação (AI-TG)</b> é de <b>US$ 10.000</b> em parcela única. Os valores são pagos em reais pela conversão do Banco Central.'},
+    {q:'Como e quando recebo?',a:'O pagamento é feito pela FAPES diretamente na sua conta do <b>Banestes</b>. A primeira parcela e o auxílio saem em até <b>5 dias úteis</b> após a publicação do Termo. As parcelas seguintes dependem do envio de comprovante de matrícula e desempenho.'},
+    {q:'A bolsa cobre a mensalidade da universidade (tuition)?',a:'Não. <b>Tuition and fees</b>, moradia, passagens, visto e transporte são de responsabilidade sua. Como aprovado, você pode ser elegível a se candidatar a <b>desconto de 15% a 100%</b> na tuition das universidades conveniadas e a <b>financiamento</b> pela parceria com o Instituto. É elegibilidade para se candidatar, não um desconto garantido.'},
+    {q:'Preciso abrir conta específica?',a:'Sim. É preciso abrir conta corrente própria no <b>Banestes</b> (não pode ser conta-salário nem poupança) e informar os dados à FAPES em até <b>30 dias</b> após a publicação do Termo.'}
+  ],
+  termo:[
+    {q:'Qual instrumento eu assino?',a:'Os dois perfis assinam o <b>Termo de Concessão de Bolsa</b> junto à FAPES, de forma eletrônica pelo <b>E-Docs/Acesso Cidadão</b>. É preciso ter cadastro validado no Acesso Cidadão.'},
+    {q:'Sou servidor. Preciso de licença?',a:'<span class="tag">Servidores</span> Sim. A aprovação não concede a licença automaticamente. Você deve dar entrada no processo de <b>licença para especialização</b> (Decreto Estadual nº 5.331/2023). A assinatura do Termo só é liberada depois que a licença é concedida.'},
+    {q:'Servidor mantém o salário durante o curso?',a:'<span class="tag">Servidores</span> Sim. Concedida a licença, a <b>remuneração mensal do cargo é mantida</b> durante o curso (art. 11 do Decreto nº 5.331/2023), somada à bolsa da FAPES.'},
+    {q:'O que preciso comprovar para ser contratado?',a:'Admissão definitiva na universidade, comprovante de solicitação de visto e regularidade fiscal, trabalhista e previdenciária (certidões negativas). Pagamento ou parcelamento de débito não substitui a certidão.'}
+  ],
+  curso:[
+    {q:'Quais são minhas obrigações durante o curso?',a:'Dedicação exclusiva às atividades acadêmicas, residência no país de destino, matrícula ativa com desempenho comprovado, uso dos recursos apenas para os fins do edital e comunicação formal de qualquer alteração à FAPES, à Secretaria parceira e ao Instituto.'},
+    {q:'Que relatórios preciso entregar?',a:'<b>Relatório parcial</b> até 30 dias após 12 meses de vigência, se o curso durar mais de um ano. <b>Relatório final</b> até 30 dias após o término, com ata de defesa, dissertação, autoavaliação e plano de contribuição ao Estado. Ambos no modelo Sigfapes.'},
+    {q:'Posso me afastar da universidade durante o curso?',a:'Só em casos previstos e autorizados, como férias acadêmicas ou situações excepcionais. Afastamentos precisam ser comunicados e, quando exigido, autorizados pela FAPES.'}
+  ],
+  retorno:[
+    {q:'Em quanto tempo preciso voltar ao Brasil?',a:'<span class="tag">Público geral</span> em até <b>15 dias</b> após concluir o curso. <span class="tag">Servidores</span> <b>imediatamente</b> após concluir, observando as obrigações do licenciamento. Sempre comunicando o retorno à FAPES, à Secretaria parceira e ao Instituto.'},
+    {q:'Qual é a contrapartida no Brasil?',a:'<span class="tag">Público geral</span> residir e atuar no Espírito Santo pelo mesmo período de vigência da bolsa. <span class="tag">Servidores</span> permanecer a serviço do Estado pelo período correspondente ao do licenciamento.'},
+    {q:'Preciso revalidar o diploma?',a:'O reconhecimento do título obtido no exterior é responsabilidade sua. O edital indica dois caminhos: a <b>Plataforma Carolina Bori</b> ou a <b>cotutela</b> entre uma instituição do ES e a universidade de destino.'}
+  ],
+  visto:[
+    {q:'Quando começo o processo de visto?',a:'Só depois do <b>aceite</b>, com a carta ou documento oficial da universidade em mãos. Comece cedo: entre exame médico, biometria e processamento, pode levar de semanas a meses.'},
+    {q:'Posso levar a família?',a:'Depende do país. Cônjuge e filhos têm visto próprio, vinculado ao seu. Há restrições no <b>Reino Unido</b> para dependentes de mestrado integral, com exceção para quem tem bolsa ou patrocínio de governo. Consulte o Guia de Visto e confirme com o consulado.'},
+    {q:'Onde confirmo taxas e valores?',a:'Regras e taxas mudam com frequência. Confirme sempre na página oficial do país e com o escritório internacional da sua universidade antes de pagar taxas ou comprar passagens.'}
+  ],
+  prazos:[
+    {q:'O que acontece se eu atrasar um relatório ou prestação de contas?',a:'Atrasos e irregularidades podem <b>suspender</b> a bolsa e, se persistirem, levar ao <b>cancelamento</b> e ao ressarcimento à FAPES. Toda penalidade é precedida de contraditório e ampla defesa.'},
+    {q:'Em que casos a bolsa é cancelada?',a:'Entre outros: licença médica acima de 180 dias, trancamento, desempenho insatisfatório, abandono, desistência ou fraude. As hipóteses completas estão no edital e na Resolução CCAF nº 314/2022.'},
+    {q:'E se eu não cumprir o retorno?',a:'O descumprimento injustificado do compromisso de retorno pode implicar ressarcimento parcial ou total dos recursos concedidos.'}
+  ],
+  contato:[
+    {q:'Com quem falo em caso de dúvida?',a:'Dúvidas gerais e de mérito: <b>bolsas.duvidas@fapes.es.gov.br</b>. Contratos e Termo: <b>sucon@fapes.es.gov.br</b> ou <b>(27) 3636-1896</b>. Instituto Trajetórias: <b>operacoes@institutotrajetorias.org.br</b>.'},
+    {q:'Quais sistemas vou usar?',a:'<b>Sigfapes</b> para candidatura e relatórios, <b>E-Flow</b> para formulários e dados bancários (fapes.es.gov.br/formularios) e <b>E-Docs/Acesso Cidadão</b> para assinar o Termo.'}
+  ]
+};
+
+const catsEl=document.getElementById('cats');
+const panelEl=document.getElementById('panel');
+const qEl=document.getElementById('q');
+let active='all', term='';
+
+const allBtn=document.createElement('div');
+allBtn.className='cat active';allBtn.textContent='Todas';allBtn.dataset.id='all';
+catsEl.appendChild(allBtn);
+CATS.forEach(c=>{const d=document.createElement('div');d.className='cat';d.textContent=c.label;d.dataset.id=c.id;catsEl.appendChild(d);});
+catsEl.addEventListener('click',e=>{const b=e.target.closest('.cat');if(!b)return;active=b.dataset.id;[...catsEl.children].forEach(x=>x.classList.toggle('active',x===b));render();});
+qEl.addEventListener('input',()=>{term=qEl.value.trim().toLowerCase();render();});
+
+function strip(h){return h.replace(/<[^>]*>/g,' ');}
+function render(){
+  panelEl.innerHTML='';let any=false;
+  CATS.forEach(c=>{
+    if(active!=='all'&&active!==c.id)return;
+    const items=(FAQ[c.id]||[]).filter(it=>{
+      if(!term)return true;
+      return (it.q+' '+strip(it.a)).toLowerCase().includes(term);
+    });
+    if(!items.length)return;any=true;
+    const h=document.createElement('div');h.className='qcat';h.textContent=c.label;panelEl.appendChild(h);
+    items.forEach(it=>{
+      const d=document.createElement('details');d.className='acc';
+      const s=document.createElement('summary');
+      s.innerHTML='<span>'+it.q+'</span><span class="plus">+</span>';
+      const bd=document.createElement('div');bd.className='body';bd.innerHTML=it.a;
+      d.appendChild(s);d.appendChild(bd);panelEl.appendChild(d);
+    });
+  });
+  if(!any){const e=document.createElement('div');e.className='empty';e.textContent='Nada encontrado para essa busca. Tente outra palavra.';panelEl.appendChild(e);}
+}
+render();
+</script>
+</body>
+</html>
